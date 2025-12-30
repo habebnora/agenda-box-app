@@ -30,4 +30,10 @@ jobs:
       - name: Build iOS App
         run: |
           cd ios/App
-          xcodebuild -scheme App -destination 'generic/platform=iOS' -allowProvisioningUpdates build CODE_SIGNING_ALLOWED=NO
+          xcodebuild -scheme App -destination 'generic/platform=iOS' -derivedDataPath build -allowProvisioningUpdates build CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dynamic-Agenda-iOS
+          path: ios/App/build/Build/Products/Debug-iphoneos/App.app
